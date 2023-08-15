@@ -1,4 +1,6 @@
 #include "buffer.h"
+
+#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -25,6 +27,9 @@ int* BufferInit(int size)
 
 void BufferPrint(const int* const buffer, int size)
 {
+    assert(buffer);
+    assert(size == m_bufferSize);
+
     printf("Buffer size: %d items\n", m_bufferSize);
     if (buffer)
     {
