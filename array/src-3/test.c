@@ -1,5 +1,5 @@
 /*
-TETS src-3
+TEST src-3
 */
 #include "buffer.h"
 
