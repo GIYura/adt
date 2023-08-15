@@ -2,12 +2,16 @@
 #define BUFFER_H
 
 /*
-Init buffer with indexes
+@brief: Init buffer with indexes
+@in: none
+@out: none
 */
 void BufferInit(void);
 
 /*
-Print buffer content
+@brief: Print buffer content
+@in: none
+@out: none
 */
 void BufferPrint(void);
 

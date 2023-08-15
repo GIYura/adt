@@ -5,7 +5,7 @@ TEST src-0
 
 int main(int argc, char* argv[])
 {
-    /* fille buffer with loop indexes */
+    /* fill buffer with loop indexes */
     BufferInit();
 
     /* print buffer content */
