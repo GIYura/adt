@@ -1,3 +1,6 @@
+/*
+TETS src-1
+*/
 #include "buffer.h"
 #include <stdlib.h>
 
