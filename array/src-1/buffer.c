@@ -6,8 +6,10 @@
 
 static int m_bufferSize;
 
-int* BufferInit(int size)
+int* BufferInit(int const size)
 {
+    assert(size > 0);
+
     int* pBuffer = (int*)malloc(sizeof(int) * size);
     if (!pBuffer)
     {
@@ -25,7 +27,7 @@ int* BufferInit(int size)
     return pBuffer;
 }
 
-void BufferPrint(const int* const buffer, int size)
+void BufferPrint(const int* const buffer, int const size)
 {
     assert(buffer);
     assert(size == m_bufferSize);

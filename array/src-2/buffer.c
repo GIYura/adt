@@ -1,9 +1,11 @@
 #include "buffer.h"
-#include <stdio.h>
+
 #include <assert.h>
+#include <stdio.h>
 
 void BufferInit(int* const buffer, int const size)
 {
+    assert(buffer);
     assert(size > 0);
 
     for (int i = 0; i < size; i++)
@@ -14,6 +16,7 @@ void BufferInit(int* const buffer, int const size)
 
 void BufferPrint(const int* const buffer, int const size)
 {
+    assert(buffer);
     assert(size > 0);
 
     printf("Buffer size: %d items\n", size);

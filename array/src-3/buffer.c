@@ -14,7 +14,7 @@ void BufferInit(int* const buffer, int const size)
     }
 }
 
-void BufferPrint(const int* const buffer, int size)
+void BufferPrint(const int* const buffer, int const size)
 {
     assert(buffer);
     assert(size > 0);

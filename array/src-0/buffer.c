@@ -3,7 +3,7 @@
 
 #define BUFFER_SIZE 10
 
-static  int m_buffer[BUFFER_SIZE];
+static int m_buffer[BUFFER_SIZE];
 
 void BufferInit(void)
 {

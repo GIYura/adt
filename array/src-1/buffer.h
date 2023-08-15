@@ -6,7 +6,7 @@
 @in: size - buffer size
 @out: int* - pointer to allocated memory
 */
-int* BufferInit(int size);
+int* BufferInit(int const size);
 
 /*
 @brief: Print buffer content
@@ -14,6 +14,6 @@ int* BufferInit(int size);
 @in: size - buffer size
 @out: none
 */
-void BufferPrint(const int* const buffer, int size);
+void BufferPrint(const int* const buffer, int const size);
 
 #endif /* BUFFER_H */
