@@ -17,21 +17,21 @@ typedef struct
  * @param   buffer: Handle to basic-type buffer (ie. float, uint8_t, uint16_t, uint32_t)
  * @return  minimum
  */
-float BufferStats_GetMin(const Buffer* const buffer);
+float BufferStatsGetMin(const Buffer_t* const buffer);
 
 /**
  * @brief   Retrieves the maximum value from a basic-type buffer
  * @param   buffer: Handle to basic-type buffer (ie. float, uint8_t, uint16_t, uint32_t)
  * @return  maximum
  */
-float BufferStats_GetMax(const Buffer* const buffer);
+float BufferStatsGetMax(const Buffer_t* const buffer);
 
 /**
  * @brief   Retrieves the median value from a basic-type buffer
  * @param   buffer: Handle to basic-type buffer (ie. float, uint8_t, uint16_t, uint32_t)
  * @return  median
  */
-float BufferStats_GetMedian(const Buffer* const buffer);
+float BufferStatsGetMedian(const Buffer_t* const buffer);
 
 /**
  * @brief   Retrieve the mean from a basic-type buffer
@@ -39,7 +39,7 @@ float BufferStats_GetMedian(const Buffer* const buffer);
  * @param   ignoreZeros: set true to ignore zero values; false otherwise [deprecated]
  * @return  average
  */
-float BufferStats_GetMean(Buffer* const buffer, bool ignoreZeros);
+float BufferStatsGetMean(Buffer_t* const buffer, bool ignoreZeros);
 
 /**
  * @brief   Retrieve the weighted mean from a buffer of type BufferStats_WeightedData_t
@@ -47,7 +47,7 @@ float BufferStats_GetMean(Buffer* const buffer, bool ignoreZeros);
  * @param   ignoreZeros: set true to ignore zero values; false otherwise [deprecated]
  * @return  weighted mean
  */
-float BufferStats_GetWeightedMean(Buffer* const buffer, bool ignoreZeros);
+float BufferStatsGetWeightedMean(Buffer_t* const buffer, bool ignoreZeros);
 
 #endif /* BUFFER_STATS_H */
 

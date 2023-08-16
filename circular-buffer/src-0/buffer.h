@@ -37,15 +37,15 @@ typedef struct
  * @param   typeSize,  size of each buffer element (ie. sizeof(float) to create a Buffer of floats)
  * @parm    overwrite, true to drop oldest element when full, false to discard new element when full
  */
-void Buffer_Create(Buffer* const buffer, void* const data, uint16_t length, uint16_t typeSize, bool overwrite);
+void BufferCreate(Buffer_t* const buffer, void* const data, uint16_t length, uint16_t typeSize, bool overwrite);
 
-uint16_t Buffer_Capacity(const Buffer* const buffer);
+uint16_t BufferCapacity(const Buffer_t* const buffer);
 
-void Buffer_Clear(Buffer* const buffer);
+void BufferClear(Buffer_t* const buffer);
 
 /*@brief    Returns the number of elements in the buffer
  */
-uint16_t Buffer_Count(const Buffer* const buffer);
+uint16_t BufferCount(const Buffer_t* const buffer);
 
 /*@brief    Places a new element in the buffer
  *          If the buffer is full, either the oldest
@@ -56,14 +56,14 @@ uint16_t Buffer_Count(const Buffer* const buffer);
  *@parm     size, size of data (should always be equal to typeSize)
  *@return   true if the data was added to the buffer, false otherwise
  */
-bool Buffer_Put(Buffer* const buffer, const void* const data, uint16_t size);
-bool Buffer_PutFloat(Buffer* const buffer, float data);
-bool Buffer_PutUInt32(Buffer* const buffer, uint32_t data);
-bool Buffer_PutUInt16(Buffer* const buffer, uint16_t data);
-bool Buffer_PutUInt8(Buffer* const buffer, uint8_t data);
-bool Buffer_PutInt32(Buffer* const buffer, int32_t data);
-bool Buffer_PutInt16(Buffer* const buffer, int16_t data);
-bool Buffer_PutInt8(Buffer* const buffer, int8_t data);
+bool BufferPut(Buffer_t* const buffer, const void* const data, uint16_t size);
+bool BufferPutFloat(Buffer_t* const buffer, float data);
+bool BufferPutUInt32(Buffer_t* const buffer, uint32_t data);
+bool BufferPutUInt16(Buffer_t* const buffer, uint16_t data);
+bool BufferPutUInt8(Buffer_t* const buffer, uint8_t data);
+bool BufferPutInt32(Buffer_t* const buffer, int32_t data);
+bool BufferPutInt16(Buffer_t* const buffer, int16_t data);
+bool BufferPutInt8(Buffer_t* const buffer, int8_t data);
 
 /*@brief    Retrieves the element at the head of the buffer
  *@parm     buffer, buffer handle
@@ -71,7 +71,7 @@ bool Buffer_PutInt8(Buffer* const buffer, int8_t data);
  *@parm     size, size of data (should always be equal to typeSize)
  *@return   true if the item was retrieved; false if the buffer was empty
  */
-bool Buffer_Get(Buffer* const buffer, void* const data, uint16_t size);
+bool BufferGet(Buffer_t* const buffer, void* const data, uint16_t size);
 
 /*@brief    Peeks at the element at the head of the buffer without removing it
  *@parm     buffer, buffer handle
@@ -79,11 +79,11 @@ bool Buffer_Get(Buffer* const buffer, void* const data, uint16_t size);
  *@parm     size, size of data (should always be equal to typeSize)
  *@return   true if the item was retrieved; false if the buffer was empty
  */
-bool Buffer_Peek(const Buffer* const buffer, void* const data, uint16_t size);
+bool BufferPeek(const Buffer_t* const buffer, void* const data, uint16_t size);
 
-bool Buffer_IsEmpty(const Buffer* const buffer);
+bool BufferIsEmpty(const Buffer_t* const buffer);
 
-bool Buffer_IsFull(const Buffer* const buffer);
+bool BufferIsFull(const Buffer_t* const buffer);
 
 /*@brief    Retrieves the element at the head of the buffer
  *@parm     buffer, input buffer handle
@@ -91,7 +91,7 @@ bool Buffer_IsFull(const Buffer* const buffer);
  *@parm     size, size of output array in bytes
  *@return   true if the conversion was successful; false otherwise
  */
-bool Buffer_ToArray(const Buffer* const buffer, void* const array, uint16_t size);
+bool BufferToArray(const Buffer_t* const buffer, void* const array, uint16_t size);
 
 #endif /* BUFFER_H */
 
