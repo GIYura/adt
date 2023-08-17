@@ -1,6 +1,13 @@
 /*
-
 TEST src-0
+
+1. Create CB without overwrite
+    1.1 Fill CD with indexes, once CB full, discard new items;
+    1.2 Retrive items from CB and print them.
+
+2. Create CB with overwrite
+    2.1 Fill CB with indexes, once CB full, overwrite oldest items;
+    2.2 Retrieve items fromr CB and print them.
 */
 
 #include <stdio.h>
@@ -67,6 +74,6 @@ int main(int argc, char* argv[])
         }
         printf("%d ", data);
     }
-
     return 0;
 }
+
