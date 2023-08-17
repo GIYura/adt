@@ -2,7 +2,7 @@
 TEST src-0
 
 1. Create CB without overwrite
-    1.1 Fill CD with indexes, once CB full, discard new items;
+    1.1 Fill CB with indexes, once CB full, discard new items;
     1.2 Retrive items from CB and print them.
 
 2. Create CB with overwrite
