@@ -1,38 +1,54 @@
-#### Circular buffer 
+### CIRCULAR (RING) BUFFER
 
-**NOTE:** key notes described below
+### Description
 
-1. There are 2 indexes:
+**Circular buffer** (further - **CB**) is a FIFO data structure that treats memory to be circular; that is, 
+the read/write index loops back to 0 after it reaches the buffer length. 
 
-- Start - Index of head of buffer;
-- End - Index of next available space; 
+This is achieved by two pointers (or variables) to the array, the **Start** pointer and the **End** pointer.
+As data is added (write) to the buffer, the **End** pointer is incremented and likewise, when the data is being removed 
+(read) the **Start** pointer is incremented. 
 
-They used to define the rigth place to put and get incomming data.
+#### Rules:
 
-2. **End** index is used to track incomming data. Once new data put to the buffer, **End** advanced.
+1. There should be 2 indexes;
+2. Write (Put) should start at **End** index and then advance it;
+3. Read (Get) should start at **Start** index and then advance it;
+4. If the end of the buffer reached, indexes will wrap around. Modulo operation shuold be applied each time index increments;
 
-3. **Start** index is used to track outcomming data. Once the data retrieved from the buffer, **Start** advanced.
-
-4. Every time the index advanced it should be compared with the length of the buffer, in order to wrap around (not to overflow the buffer).
-
+#### Conditions:
 ```
- index = (index + 1) % BUFFER_SIZE
-```
-
-5. Once the **End** reaches the end of the buffer, it should be set to the start point ([0]) and it should 
-advance the **Start** (to overwrite the oldest data) or just discard the new data.
-
-6. Functions **BufferPut()** and **BufferGet()** should be start with verifying the state of the buffer (full / empty).
-
-7. The **empty**: 
-
-```
-End == Start
+Full:     (End + 1) % BufferSize == Start
+Empty:    End == Start
+Initail:  Start == End == 0
 ```
 
-8. The **full**:
+### Main Operations:
 
-```
-((End + 1) % BUFFER_SIZE) == Start
-```
+* Put an item to the buffer;
+* retrieve an item from the buffer;
+
+#### Put:
+
+* verify whether the buffer is *Full*, if *Full* return *false*, otherwise continue;
+* add new **Item** to the buffer where **End** is pointing;
+* advance **End** (End = (End + 1) % bufferSize)
+
+#### Get:
+
+* verify whether the buffer is *Empty*, if *Empty* return *false*, otherwise continue;
+* retrieve **Item** from the buffer where **Start** is pointing;
+* advance **Start** (Start = (Start + 1) % bufferSize)
+
+**NOTE:** Aforementioned conditions called **"Waste"** and it is **Thread-safe**, because data "Consumer" and "Producer" access 
+corresponding indexes.
+
+There is another way to define *Full* and *Empty* condition using bool **Flag**. 
+This approach involse different logic and extra logic should be consider to provide **Thread-safe** usage.
+
+**NOTE:** What should be done when new data arrived, but the buffer is *Full*?
+
+There are two ways: 
+* discard new data (Not add new data, use bool to return);
+* discard the oldest data (add new data to the buffer and advance **Start**); 
 
