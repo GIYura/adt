@@ -52,3 +52,5 @@ There are two ways:
 * discard new data (Not add new data, use bool to return);
 * discard the oldest data (add new data to the buffer and advance **Start**); 
 
+Reference:[link](https://embedjournal.com/implementing-circular-buffer-embedded-c/)
+
