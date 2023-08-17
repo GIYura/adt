@@ -25,4 +25,9 @@ Data Structure Classification:
     - graph
 
 Reference:
-[link](https://www.geeksforgeeks.org/data-structures/)
+
+- [link](https://www.geeksforgeeks.org/data-structures/)
+- [link](https://www.programiz.com/dsa/queue)
+- [link](https://www.geeksforgeeks.org/queue-set-1introduction-and-array-implementation/)
+- [link](https://dev.to/iuliagroza/complete-introduction-to-the-30-most-essential-data-structures-algorithms-43kd)
+
