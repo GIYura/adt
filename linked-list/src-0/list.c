@@ -30,16 +30,21 @@ void NodeInsertFront(Node_t** head, int value)
     *head = node;
 }
 
-void NodeInsertBack(Node_t** head, int value)
+void NodeInsertBack(Node_t* head, int value)
 {
     Node_t* node = malloc(sizeof(Node_t));
     node->value = value;
     node->next = NULL;
 
-    Node_t* temp = *head;
-    while(temp->next != NULL)
+    /* Best practice to use local variable. */
+    Node_t* temp = head;
+
+    /* find the last item in the list. 
+    Last means, its 'next' points to NULL
+    */
+    while (temp->next != NULL)
     {
-      temp = temp->next;
+        temp = temp->next;
     }
     temp->next = node;
 }

@@ -13,10 +13,36 @@ typedef struct node
     struct node* next;
 } Node_t;
 
+/* @brief   Create a node
+ * @param   value: default value of the node
+ * @return  pointer to memory allocated for a node
+ */
 Node_t* NodeCreate(int value);
+
+/* @brief   Delete a node
+ * @param   node: to be deleted
+ * @return  none
+ */
 void NodeDelete(Node_t* node);
+
+/* @brief   Print the whole list starting at head
+ * @param   head: pointer to the beginning of the list
+ * @return  none
+ */
 void NodePrint(Node_t* head);
-void NodeInsertBack(Node_t** head, int value);
+
+/* @brief   Insert an item in the list
+ * @param   head: address of the head
+ * @param   value: to be stored
+ * @return  none
+ */
+void NodeInsertBack(Node_t* head, int value);
+
+/* @brief   Insert an item in the list
+ * @param   head: address of the head
+ * @param   value: to be stored
+ * @return  none
+ */
 void NodeInsertFront(Node_t** head, int value);
 
 /*
@@ -24,7 +50,17 @@ void NodeInsertFront(Node_t** head, int value);
 */
 void NodeInsertFrontWrong(Node_t* head, int value);
 
+/* @brief   Search an item in the list
+ * @param   head: start of the list
+ * @param   value: key value
+ * @return  true - found, false - otherwise
+ */
 bool NodeSearch(Node_t* head, int value);
+
+/* @brief   Count number of items in the list
+ * @param   head: address of the head
+ * @return  count: stored number
+ */
 int NodeCount(Node_t* head);
 
 #endif /* LINKED_LIST_H */

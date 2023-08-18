@@ -33,7 +33,7 @@ int main(int argc, char* argv[])
         NodeInsertFront(&m_list1, i);
     
         /* head at the beginning */
-        NodeInsertBack(&m_list2, i);
+        NodeInsertBack(m_list2, i);
     }
     printf("Head at the end.\n");
     printf("List capacity: %d\n", NodeCount(m_list1));
