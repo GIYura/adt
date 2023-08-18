@@ -22,6 +22,7 @@ static Node_t* m_list3;
 
 int main(int argc, char* argv[])
 {
+    /* create 3 lists with initial value */
     m_list1 = NodeCreate(1);
     m_list2 = NodeCreate(1);
     m_list3 = NodeCreate(1);
@@ -42,6 +43,7 @@ int main(int argc, char* argv[])
     printf("List capacity: %d\n", NodeCount(m_list2));
     NodePrint(m_list2);
 
+    /* demo of wrong insert */
     printf("Wrong Put: 10, 20, 30\n");
     printf("List capacity: %d\n", NodeCount(m_list3));
     NodeInsertFrontWrong(m_list3, 10);
@@ -50,6 +52,7 @@ int main(int argc, char* argv[])
 
     NodePrint(m_list3);
     
+    /* search an item in the list1 */
     int value = 10;
     printf("Search value %d in list1\n", value);
     if (NodeSearch(m_list1, value))
