@@ -119,3 +119,10 @@ Current tracks current **Node**, previous tracks previous **Node**.
 * iterate over List using pointer-to-pointer (advance pointer-to-pointer);
 * once **key** is found, dereference pointer-to-pointer and advance to next;
 
+**NOTE:** Time complexity:
+
+- Insert: O(1);
+- Access: O(n); 
+- Search: O(n);
+- Remove: O(1).
+
