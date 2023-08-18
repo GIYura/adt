@@ -47,6 +47,11 @@ void NodeInsertFront(Node_t** head, int value);
 
 /*
 * @brief: This function is wrong.
+* It passes pointer to the head, in this way it is not
+* possible to modify caller memory, in fact just local
+* copy of the node.
+* Golden rule:
+* To modify caller memory, pass a pointer to that memory.
 */
 void NodeInsertFrontWrong(Node_t* head, int value);
 
