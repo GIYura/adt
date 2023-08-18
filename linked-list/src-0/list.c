@@ -3,8 +3,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void NodePrint(Node_t* node)
+void NodePrint(Node_t* head)
 {
+    Node_t* node = head;
     while (node != NULL)
     {
         printf("Node value: %d\r\n", node->value);
@@ -12,7 +13,15 @@ void NodePrint(Node_t* node)
     }
 }
 
-void NodePutBack(Node_t** head, int value)
+void NodeInsertFrontWrong(Node_t* head, int value)
+{
+    Node_t* node = malloc(sizeof(Node_t));
+    node->value = value;
+    node->next = head;
+    head = node;
+}
+
+void NodeInsertFront(Node_t** head, int value)
 {
     Node_t* node = malloc(sizeof(Node_t));
     node->value = value;
@@ -21,7 +30,7 @@ void NodePutBack(Node_t** head, int value)
     *head = node;
 }
 
-void NodePutFront(Node_t** head, int value)
+void NodeInsertBack(Node_t** head, int value)
 {
     Node_t* node = malloc(sizeof(Node_t));
     node->value = value;
@@ -35,9 +44,21 @@ void NodePutFront(Node_t** head, int value)
     temp->next = node;
 }
 
-void NodeSearch(Node_t* head, int* value)
+bool NodeSearch(Node_t* head, int value)
 {
-/* TODO: */
+    Node_t* node = head;
+    bool ret = false;
+
+    while (node != NULL)
+    {
+        if (node->value == value)
+        {
+            ret = true;
+            break;
+        }
+        node = node->next;
+    }
+    return ret;
 }
 
 Node_t* NodeCreate(int value)
@@ -56,5 +77,17 @@ Node_t* NodeCreate(int value)
 void NodeDelete(Node_t* node)
 {
 /* TODO: */
+}
+
+int NodeCount(Node_t* head)
+{
+    int counter = 0;
+    Node_t* node = head;
+    while (node != NULL)
+    {
+        ++counter;
+        node = node->next;
+    }
+    return counter;
 }
 
