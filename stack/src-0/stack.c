@@ -35,7 +35,7 @@ bool StackPop(Stack_t* stack, int* value)
 
 static bool StackIsFull(Stack_t* stack)
 {
-    return (stack->top == stack->size) ? true : false;
+    return (stack->top == (stack->size - 1)) ? true : false;
 }
 
 static bool StackIsEmpty(Stack_t* stack)

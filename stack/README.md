@@ -16,9 +16,11 @@ can be removed is the element that is at the top of the stack, just like a pile 
 
 #### Conditions:
 
-*Full*:     **TOP** == **Size - 1**
-*Empty*:    **TOP == -1**
-*Initail*:  **TOP == -1**
+```
+Full:     TOP == Size - 1
+Empty:    TOP == -1**
+Initail:  TOP == -1**
+```
 
 ### Main Operations:
 
