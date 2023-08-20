@@ -2,7 +2,8 @@
 
 #### Description
 
-A **Queue** is a linear data structure that stores a collection of elements. The queue operates on first in first out (FIFO) algorithm. 
+A **Queue** is a linear data structure that stores a collection of elements.
+The queue operates on first-in-first-out (FIFO) algorithm. 
 
 #### Rules:
 
