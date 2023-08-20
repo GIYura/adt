@@ -1,5 +1,11 @@
 /*
 TEST src-0
+
+1. Create a queue;
+2. Fill the queue with loop indexes;
+3. Retrieve 1 item from the queue;
+4. Put the same item multiplied by 10 to the queue;
+5 Retrive all the items from the queue and print them.
 */
 #include "queue.h"
 #include <stdio.h>
@@ -44,3 +50,4 @@ int main(int argc, char* argv[])
 
     return 0;
 }
+
