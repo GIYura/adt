@@ -1,9 +1,9 @@
 /*
 TEST src-0
 
-1. Creat a Stack
+1. Create a Stack
 2. Fill with loop indexes
-3. Retrieve data from Stack and print it.
+3. Retrieve data from Stack and print them.
 */
 #include "stack.h"
 #include <stdio.h>
@@ -31,14 +31,14 @@ int main(int argc, char* argv[])
     for (int i = 0; i < 10; i++)
     {
         int value;
-        if (StackPop(&m_stack, &value))
-        {
-            printf("%d ", value);
-        }
-        else
+        if (!StackPop(&m_stack, &value))
         {
             printf("\nStack is Empty\n");
             break;
+        }
+        else
+        {
+            printf("%d ", value);
         }
     }
     printf("\n");
