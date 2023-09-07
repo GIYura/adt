@@ -1,5 +1,4 @@
 #### Implementation
 
-This section demonstates 6 ways to return array from the function
-
+These examples show how to (and not to) return an array from a function.
 
