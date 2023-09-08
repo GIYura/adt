@@ -29,7 +29,15 @@ void PrintMatrix_PointerToArray(const int (*matrix)[COL_MAX], int row);
 */
 void PrintMatrix_PointerToArraySingleLoop(const int (*matrix)[COL_MAX], int row);
 
-
+/*
+NOTE: works in case x == y == z.
+@brief: Print 3-D array
+@in: cube - pointer to a single element of 3-D array
+@in: x - represents the number of 2-D arrays
+@in: y - represents the number of rows in single 2-D array
+@in: z - represents the number of colomns in single 2-D array
+@out: none
+*/
 void PrintCube_SinglePointer(const int* cube, int x, int y, int z);
 
 #endif /* MATRIX_H */
