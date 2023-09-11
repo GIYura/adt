@@ -44,6 +44,10 @@
 
 7. Операция взятия адреса & - это выход из коробки, 
 операция разименования адреса * - это вход в коробку.
+```
+int (*pBuffer)[3] = &buffer;
+printf("\n%d\n", **pBuffer);
+```
 
 ![Buffer](https://github.com/GIYura/adt/blob/linear/array/src-6/buffer.png)
 
