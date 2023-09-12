@@ -1,98 +1,138 @@
 #include <stdio.h>
 
-int main(int argc, char* argv[])
-{
-    int buffer[] = { 33, 22, 11 };
-    int data[] = { 55, 66, 77 };
+#define BUFFER_SIZE     3
+
+static void PrintBuffer(const int* const buffer, const int buffSize);
 
 /*
-NOTES:
-1. Имя массива - это базовый адрес, который является адресом
-первого элемента массива.
-
-2. Имя массива нельзя присвоить другому массиву:
-    buffer = data; // illigal;
-
-3. Массив != указатель
-    sizeof(buffer); // размер всего массива в байтах (3 * 4) = 12
-    sizeof(p);      // размер указателя в байтах (8 байтов) 64 бит архитектура
-
-4. buffer[i] эквивалентно *(buffer + i).
-
-5. buffer + 1 - это следующий элемент в массиве.
-Пример: предположим что базовый адрес массива = 0х1000 и 64-bit
-тогда адрес следующего элемента вызичляется:
-- 0х1000 + 1 * sizeof(element type) = 0x1000 + 1 * 4 = 0x1004.
-
-6. Адрес массива совпадает с базовым адресом, а значит и с 
-адресом первого элемента, но контекст разный.
-
-- &buffer - это адрес всего массива, т.е. 
-&buffer + 1 - это адрес следующего элемента за всем массивом.
-
-Пример: предположим что базовый адрес массива = 0х1000 и массив 
-содержит 3 элемента типа int, тогда &buffer + 1 будет равно:
-- 0x1000 + 1 = 0x1000 + 3 * 4 = 0x100C
-
-7. Операция взятия адреса & - это выход из коробки, 
-операция разименования адреса * - это вход в коробку.
-
-
+-----------------MAIN-------------------
 */
-    printf("address buffer: %p\n", buffer); 
-    printf("address &buffer: %p\n", &buffer); 
-    printf("address &buffer[0]: %p\n", &buffer[0]); 
+int main(int argc, char* argv[])
+{
+    int buffer[BUFFER_SIZE] = { 33, 22, 11 };
+    int data[BUFFER_SIZE] = { 55, 66, 77 };
+
+/* 
+1. Address of the buffer is address of its fisrt element.
+NOTE: output is the same.
+*/
+    printf("address of buffer: %p\n", buffer); 
+    printf("address of &buffer: %p\n", &buffer); 
+    printf("address of &buffer[0]: %p\n", &buffer[0]); 
+
+/*
+2. Pointer to an entire buffer.
+NOTE: output is the same as step 1.
+ */
     int (*pBuffer)[3] = &buffer;
     printf("address (*pBuffer)[3]: %p\n", pBuffer);
-    int* p = buffer;
-    printf("address p: %p\n", p);
-    p = data;
-    printf("address p: %p\n", p);
 
-    printf("size of buffer: %ld in bytes\n", sizeof(buffer));
-    printf("number of items in buffer: %ld\n", sizeof(buffer)/sizeof(buffer[0]));
-    printf("size of pointer: %ld\n", sizeof(p));
-    printf("size of int: %ld\n", sizeof(int));
+/*
+3. Pointer to an array.
+NOTE: pointer to an array is pointer to its first element.
+*/
+    int* pFirstElenemt = buffer;
+    printf("address p: %p\n", pFirstElenemt);
 
-    printf("address buffer + 1: %p\n", buffer + 1);
-    printf("address &buffer + 1: %p\n", &buffer + 1);
-    printf("address pBuffer + 1: %p\n", pBuffer + 1);
+/*
+4. Pointer can be assigned to another buffer.
+*/
+    pFirstElenemt = data;
+    printf("address p: %p\n", pFirstElenemt);
 
-    printf("\n%d\n", **pBuffer);
-
+/*
+5. Array name in not lvalue.
+NOTE: array name can not be modified, it is not possible to assing
+another array.
+lvalue - known at compile time;
+r-value - known at runtime.
+*/
 #if 0
-    printf("value *buffer: %d\n", *buffer);
-    printf("value *buffer + 1: %d\n", *buffer + 1);
-    printf("value *(buffer + 1): %d\n", *(buffer + 1));
-
-    printf("%d\n", buffer[0]);
-    printf("%d\n", buffer[1]);
-    printf("%d\n\n", buffer[2]);
-
-    
-    printf("%d\n", *(buffer + 0));
-    printf("%d\n", *(buffer + 1));
-    printf("%d\n\n", *(buffer + 2));
-
-    int* pB = buffer;
-
-    printf("%d\n", *pB);
-    printf("%d\n", *pB++);
-    printf("%d\n\n", *pB++);
+    buffer = data; /* illigal */
 #endif
 
-#if 0
-    for (int i = 0; i < 3; i++)
-    {
-        printf("address buffer[%d]: %p\n", i, (buffer + i));
-    }
+/*
+6. Array name is not the same as pointer.
+NOTE: 
+int buffer[]; - buffer is array of int
+int* pBuffer: - pointer to an array of int.
+*/
+    printf("size of buffer: %ld in bytes\n", sizeof(buffer));
+    printf("size of pointer: %ld in bytes\n", sizeof(pFirstElenemt));
+
+/*
+7. Iterate over array.
+NOTE: address of the next array element:
+(base address + 1 * sizeof type) = (0x1000 + 1 * 4) = 0x1004
+(base address + 1 * number of elements in the buffer * size of type) = (0x1000 + 1 * 3 * 4) = 0x100C
+*/
+    printf("address buffer + 1: %p\n", buffer + 1);     /* address of the next element in buffer */
+    printf("address &buffer + 1: %p\n", &buffer + 1);   /* address behind the whole buffer */
+    printf("address pBuffer + 1: %p\n", pBuffer + 1);
+
+/*
+8. Acceess to the array element.
+NOTE: 
+*(buffer + 1) isn't the same as *buffer + 1
+
+operation '++' isn't the same as '+ 1'.
+'++'  - increment and assign (which is illgal, see point 5)
+'+ 1' - increment address by 1.
+*/
+    printf("element [0]: %d\n", **pBuffer);        /* double asterisk provides access to the element over pointer to the whole array */
+    printf("element behind buffer: %d\n", **(&buffer + 1));  /* NOTE: assess to the next element behind the whole buffer */
+
+    /*  next 2 statement are equal */
+    printf("element [1]: %d\n", buffer[1]);
+    printf("element [1]: %d\n", *(buffer + 1));     /* increment address then dereference */
     
-    for (int* pB = &buffer[0]; pB <= &buffer[2]; pB++)
+    printf("element [0]: %d\n", *buffer);
+    printf("element [0] incremented by 1: %d\n", *buffer + 1); /* dereference first element then increment it */
+
+/* NOTE: this is related to buffer name (base address only).
+This is not valid to pointer to a buffer.
+*/
+#if 0
+    printf("value %d\n", *buffer++);    /* illigal */
+#else
+    printf("%d\n", *pFirstElenemt++);   /* ligal  */
+#endif
+
+/*
+9. Passing array to a function
+NOTE: array decades to pointer.
+*/
+    int bufferSize = sizeof(buffer) / sizeof(buffer[0]);
+    PrintBuffer(buffer, bufferSize);
+
+/*
+10. Print array using address.
+NOTE: the following 'for' are equvivalent
+*/
+    printf("Buffer: ");
+    for (int* pB = &buffer[0]; pB <= &buffer[BUFFER_SIZE - 1]; pB++)
     {
         printf("%d ", *pB);
     }
+    
+    printf("\nBuffer: ");
+    for (int* pB = buffer; pB <= buffer + (BUFFER_SIZE - 1); pB++)
+    {
+            printf("%d ", *pB);
+    }
     printf("\n");
-#endif
+
 
     return 0;
 }
+
+static void PrintBuffer(const int* const buffer, const int buffSize)
+{
+    printf("Buffer: ");
+    for (int i = 0; i < buffSize; i++)
+    {
+        printf("%d ", buffer[i]);
+    }
+    printf("\n");
+}
+
