@@ -53,6 +53,7 @@ r-value - known at runtime.
 
 /*
 6. Array name is not the same as pointer.
+NOTE: array name is address of its first element
 NOTE: 
 int buffer[]; - buffer is array of int
 int* pBuffer: - pointer to an array of int.
@@ -129,6 +130,7 @@ means that uninitialized array will be filled with data that already
 stored in memory.
 */
     int array1[5];
+    printf("array-1: ");
     for (int i = 0; i < 5; i++)
     {
         printf("%d ", array1[i]);
@@ -139,6 +141,7 @@ stored in memory.
 NOTE: if array partially initialized, compiler will fill the rest with '0'. 
 */
     int array2[5] = {0};
+    printf("array-2: ");
     for (int i = 0; i < 5; i++)
     {
         printf("%d ", array2[i]);
@@ -150,6 +153,7 @@ NOTE: designated initalizer (C99).
 Allow init specific element of an array (the rest is 0)
 */
     int array3[5] = {[2] = 222}; 
+    printf("array-3: ");
     for (int i = 0; i < 5; i++)
     {
         printf("%d ", array3[i]);
@@ -160,6 +164,7 @@ Allow init specific element of an array (the rest is 0)
 NOTE: array4 contains 5 elements (from index 0 - 4).
 */
     int array4[5] = {[1] = 111, [3] = 333, 444};
+    printf("array-4: ");
     for (int i = 0; i < 5; i++)
     {
         printf("%d ", array4[i]);
@@ -171,12 +176,26 @@ NOTE: even if array size if missed, compiler will allocate enough memory
 to store all elements.
 */
     int array5[] = {[1] = 111, [3] = 333, 444};
+    printf("array-5: ");
     for (int i = 0; i < 5; i++)
     {
         printf("%d ", array5[i]);
     }
     printf("\n");
     printf("Number of elements in array: %ld\n", sizeof(array5) / sizeof(array5[0]));
+
+/*
+12. Array of variable size.
+NOTE: Linux (gcc) supports this even with compiler option -std=c89
+*/
+    int size = 10;
+    int array6[size];
+    printf("array-6: ");
+    for (int i = 0; i < size; i++)
+    {
+        printf("%d ", array6[i]);
+    }
+    printf("\n");
 
     return 0;
 }
