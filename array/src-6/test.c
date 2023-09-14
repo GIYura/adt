@@ -122,6 +122,61 @@ NOTE: the following 'for' are equvivalent
     }
     printf("\n");
 
+/*
+11. Array initialization
+NOTE: array declared in main() function and has automatic class storage,
+means that uninitialized array will be filled with data that already 
+stored in memory.
+*/
+    int array1[5];
+    for (int i = 0; i < 5; i++)
+    {
+        printf("%d ", array1[i]);
+    }
+    printf("\n");
+
+/*
+NOTE: if array partially initialized, compiler will fill the rest with '0'. 
+*/
+    int array2[5] = {0};
+    for (int i = 0; i < 5; i++)
+    {
+        printf("%d ", array2[i]);
+    }
+    printf("\n");
+
+/*
+NOTE: designated initalizer (C99).
+Allow init specific element of an array (the rest is 0)
+*/
+    int array3[5] = {[2] = 222}; 
+    for (int i = 0; i < 5; i++)
+    {
+        printf("%d ", array3[i]);
+    }
+    printf("\n");
+
+/*
+NOTE: array4 contains 5 elements (from index 0 - 4).
+*/
+    int array4[5] = {[1] = 111, [3] = 333, 444};
+    for (int i = 0; i < 5; i++)
+    {
+        printf("%d ", array4[i]);
+    }
+    printf("\n");
+
+/*
+NOTE: even if array size if missed, compiler will allocate enough memory
+to store all elements.
+*/
+    int array5[] = {[1] = 111, [3] = 333, 444};
+    for (int i = 0; i < 5; i++)
+    {
+        printf("%d ", array5[i]);
+    }
+    printf("\n");
+    printf("Number of elements in array: %ld\n", sizeof(array5) / sizeof(array5[0]));
 
     return 0;
 }
